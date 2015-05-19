@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/_9IcXrINIZBadAjmwm0GyE0uLNI\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/EycbJG1N_DwCJLvRceNBm0pH0Bc\"",
  "discoveryVersion": "v1",
  "id": "mainEndpoint:v0",
  "name": "mainEndpoint",
@@ -11,10 +11,10 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://crowdappz-demo.appspot.com/_ah/api/",
- "basePath": "/_ah/api/",
+ "baseUrl": "https://crowdappz-demo.appspot.com/_ah/api/mainEndpoint/v0/",
+ "basePath": "/_ah/api/mainEndpoint/v0/",
  "rootUrl": "https://crowdappz-demo.appspot.com/_ah/api/",
- "servicePath": "",
+ "servicePath": "mainEndpoint/v0/",
  "batchPath": "batch",
  "parameters": {
   "alt": {
@@ -59,6 +59,121 @@
    "type": "string",
    "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
    "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "BooleanWrapper": {
+   "id": "BooleanWrapper",
+   "type": "object",
+   "properties": {
+    "b": {
+     "type": "boolean"
+    }
+   }
+  },
+  "Location": {
+   "id": "Location",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "latitude": {
+     "type": "number",
+     "format": "double"
+    },
+    "longitude": {
+     "type": "number",
+     "format": "double"
+    },
+    "userId": {
+     "type": "string"
+    }
+   }
+  },
+  "LocationCollection": {
+   "id": "LocationCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Location"
+     }
+    }
+   }
+  }
+ },
+ "resources": {
+  "mainEndpoint": {
+   "methods": {
+    "getLocations": {
+     "id": "mainEndpoint.mainEndpoint.getLocations",
+     "path": "getLocationsFromUser",
+     "httpMethod": "GET",
+     "parameters": {
+      "userId": {
+       "type": "string",
+       "required": true,
+       "location": "query"
+      }
+     },
+     "parameterOrder": [
+      "userId"
+     ],
+     "response": {
+      "$ref": "LocationCollection"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    },
+    "storeLocation": {
+     "id": "mainEndpoint.mainEndpoint.storeLocation",
+     "path": "storeLocation",
+     "httpMethod": "POST",
+     "parameters": {
+      "latitude": {
+       "type": "number",
+       "required": true,
+       "format": "double",
+       "location": "query"
+      },
+      "longitude": {
+       "type": "number",
+       "required": true,
+       "format": "double",
+       "location": "query"
+      },
+      "userId": {
+       "type": "string",
+       "required": true,
+       "location": "query"
+      }
+     },
+     "parameterOrder": [
+      "latitude",
+      "longitude",
+      "userId"
+     ],
+     "response": {
+      "$ref": "BooleanWrapper"
+     },
+     "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+     ]
+    }
+   }
   }
  }
 }

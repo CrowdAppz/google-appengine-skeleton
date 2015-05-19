@@ -8,20 +8,22 @@ import com.googlecode.objectify.annotation.Index;
 @Entity
 @Cache
 public class Location {
-	
+
 	@Id
 	private Long id;
 	@Index
 	private String userId;
 	private double latitude;
 	private double longitude;
-	
+
+	public Location(){}
+
 	public Location(String userId, double latitude, double longitude){
 		this.userId = userId;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
