@@ -40,7 +40,7 @@ After you have performed the Troubleshooting steps, type in again
 You will get prompeted for a code, simultaneously a browser tab will open, requesting you to log in. Choose the account you used to create the application on appengine. After the login process, a code is displayed in the browser. Copy and paste that code into your shell and press Enter. The app should be deployed successfully now.
 
 <h1>API</h1>
-Access the API of the backend by visiting: https://<your-project-id>.appspot.com/_ah/api/explorer
+Access the API of the backend by visiting: https://yourProjectId.appspot.com/_ah/api/explorer
 
 In general, the API of the backend looks like this: https://yourProjectId.appspot.com/_ah/api/%endPointName%/%version%/%methodPlaceholder%
 
