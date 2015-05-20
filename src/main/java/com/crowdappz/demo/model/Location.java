@@ -13,15 +13,15 @@ public class Location {
 	private Long id;
 	@Index
 	private String userId;
-	private double latitude;
-	private double longitude;
+	private double lat;
+	private double lng;
 
 	public Location(){}
 
-	public Location(String userId, double latitude, double longitude){
+	public Location(String userId, double lat, double lng){
 		this.userId = userId;
-		this.latitude = latitude;
-		this.longitude = longitude;
+		this.lat = lat;
+		this.lng = lng;
 	}
 
 	public Long getId() {
@@ -40,19 +40,19 @@ public class Location {
 		this.userId = userId;
 	}
 
-	public double getLatitude() {
-		return latitude;
+	public double getLat() {
+		return lat;
 	}
 
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
+	public void setLat(double lat) {
+		this.lat = lat;
 	}
 
-	public double getLongitude() {
-		return longitude;
+	public double getLng() {
+		return lng;
 	}
 
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
+	public void setLng(double lng) {
+		this.lng = lng;
 	}
 }
