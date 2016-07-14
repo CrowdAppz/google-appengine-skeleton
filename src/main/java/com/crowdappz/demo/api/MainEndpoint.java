@@ -1,11 +1,9 @@
 package com.crowdappz.demo.api;
 
-import static com.googlecode.objectify.ObjectifyService.ofy;
-
-import java.util.List;
-
+import com.crowdappz.demo.handler.QueryHandler;
 import com.crowdappz.demo.model.Location;
 import com.crowdappz.demo.wrapper.BooleanWrapper;
+import com.google.api.server.spi.ServiceException;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
@@ -13,6 +11,8 @@ import com.google.api.server.spi.config.Named;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.Query;
+
+import java.util.List;
 
 @Api(name = "mainEndpoint", version = "v0")
 public class MainEndpoint {
@@ -29,11 +29,10 @@ public class MainEndpoint {
 	@ApiMethod(httpMethod = HttpMethod.POST, path = "storeLocation")
 	public BooleanWrapper storeLocation(@Named("userId") String userId,
 			@Named("latitude") double latitude,
-			@Named("longitude") double longitude) {
+			@Named("longitude") double longitude) throws ServiceException {
 
 		Location location = new Location(userId, latitude, longitude);
-
-		ofy().save().entity(location).now();
+		QueryHandler.save(location);
 
 		return new BooleanWrapper(true);
 	}
